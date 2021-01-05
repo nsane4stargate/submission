@@ -1,7 +1,7 @@
 const SHA256 = require('crypto-js/sha256');
 
 class Block{
-    
+
     /* Step 1 */
     constructor(timestamp, lastHash, hash, data){
         this.timestamp = timestamp;
@@ -36,6 +36,11 @@ class Block{
     /* Step 5 */
     static hash(timestamp, lastHash, data){
         return SHA256(`${timestamp}${lastHash}${data}`).toString();
+    }
+
+    /* Step 9 */
+    static blockHashValidator(block){
+        return Block.hash(block.timestamp, block.lastHash, block.data);
     }
 }
 
