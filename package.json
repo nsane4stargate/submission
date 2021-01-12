@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "test": "jest --watchAll",
-    "dev-test": "nodemon dev-test"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "crypto-js": "^4.0.0",
