@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node ./app",
     "dev": "nodemon ./app",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "dev-test": "node dev-test.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
