@@ -51,15 +51,17 @@ describe('Blockchain', ()=>{
         bc.replaceChain(bc2.chain);
         console.log('replaceChain() called');
 
+        /*
         console.log('bc Blockchain');
-        bc.chain.forEach(element => {
+         bc.chain.forEach(element => {
             console.log(element.toString());
         });
 
         console.log('bc2 Blockchain');
         bc2.chain.forEach(element => {
             console.log(element.toString());
-        });
+        }); 
+        */
 
        expect(bc.chain).not.toEqual(bc2.chain);
     }); 
