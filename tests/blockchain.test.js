@@ -51,7 +51,7 @@ describe('Blockchain', ()=>{
         bc.replaceChain(bc2.chain);
         console.log('replaceChain() called');
 
-        /*
+        /* 
         console.log('bc Blockchain');
          bc.chain.forEach(element => {
             console.log(element.toString());
