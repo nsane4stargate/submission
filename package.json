@@ -5,6 +5,9 @@
     "test": "jest --watchAll",
     "dev-test": "node dev-test.js"
   },
+  "jest":{
+    "testEnvironment":"node"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "crypto-js": "^4.0.0",
@@ -12,6 +15,7 @@
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
+    "uuid": "^8.3.2",
     "ws": "^7.4.2"
   }
 }
