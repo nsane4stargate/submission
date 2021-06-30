@@ -1,11 +1,11 @@
 const Websocket = require('ws');
 
-const P2P_PORT = process.env.P2P_PORT || 5001;
+const P2P_PORT = process.env.P2P_PORT || 8080;
 const peers = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
 class P2pServer{
-    constructor(blockchain){
-        this.blockchain = blockchain;
+    constructor(mcaMap){
+        this.mcaMap = mcaMap;
         this.sockets = [];
     }
 
@@ -25,7 +25,6 @@ class P2pServer{
     connectToPeer(){
         peers.forEach(peer =>{
             const socket = new Websocket(peer);
-
             socket.on('open', ()=>this.connectSocket(socket));
         });
     }
@@ -36,27 +35,33 @@ class P2pServer{
 
         /* Sends socket with its data to the messageHandler() */
         this.messageHandler(socket);
-        this.sendChain(socket);
+        this.sendList(socket);
     }
 
     /* Event handler for newly connected socket */
     messageHandler(socket){
         
         socket.on('message', message =>{
-            const data = JSON.parse(message);
+            try{
+                console.log(`In message ${this.messageHandler}`);
+                const list = JSON.parse(message); 
+                console.log(`Message ${message}`);
 
-            /* Attempts to replace chain */
-            this.blockchain.replaceChain(data);
+                /* Attempts to replace list */
+                this.mcaMap.replaceList(list);
+            }catch(e){
+                console.log(`Something went wrong ${e.message}`);
+            }
         });
     }
 
-    sendChain(socket){
-        socket.send(JSON.stringify(this.blockchain.chain));
+    sendList(socket){
+        socket.send(JSON.stringify(this.mcaMap.list));
     }
 
-    synchChains(){
+    syncList(){
         this.sockets.forEach(socket =>{
-            this.sendChain(socket);
+            this.sendList(socket);
         });
     }
 }
